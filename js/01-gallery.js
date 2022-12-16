@@ -33,3 +33,22 @@ function onFullSizeImage (event) {
   const fullImage = event.target.dataset.source;
   openFullImage(fullImage)
 }
+
+function openFullImage(image) {
+  const fullImageModal = basicLightbox.create(`
+  <img src= "${image}">
+  `,{
+    onShow: (fullImageModal) => {
+      document.addEventListener("keydown", onKeybordClose)
+    },
+    onClose: (fullImageModal) => {
+      document.removeEventListener("keydown", onKeybordClose)
+    }
+})
+function onKeybordClose(event) {
+  if (event.code === "Escape") {
+    fullImageModal.close()
+  }
+}
+fullImageModal.show()
+}
