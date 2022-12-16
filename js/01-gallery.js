@@ -25,4 +25,11 @@ function createGalleryMarkup(items) {
 }
 galleryContainer.addEventListener("click", onFullSizeImage)
 
-
+function onFullSizeImage (event) {
+  event.preventDefault();
+  if(event.target.nodeName !=="IMG") {
+    return
+  }
+  const fullImage = event.target.dataset.source;
+  openFullImage(fullImage)
+}
